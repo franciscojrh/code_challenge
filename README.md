@@ -76,7 +76,7 @@ Code_Challenge/
 ### 1. Clone / Download the project
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:franciscojrh/code_challenge.git
 cd Code_Challenge
 ```
 
@@ -94,8 +94,8 @@ Open `test/data/testData.js` and replace the placeholder values with your DemoBl
 export const testData = {
     users: {
         validUser: {
-            username: 'YOUR_USERNAME',   // ← your DemoBlaze username
-            password: 'YOUR_PASSWORD'   // ← your DemoBlaze password
+            username: 'YOUR_USERNAME',   // ← your DemoBlaze username - review test/data info
+            password: 'YOUR_PASSWORD'   // ← your DemoBlaze password - review test/data info
         }
     },
     ...
