@@ -5,7 +5,9 @@
     "wdio": "wdio run ./wdio.conf.js",
     "test": "wdio run ./wdio.conf.js",
     "test:smoke": "wdio run ./wdio.conf.js --cucumberOpts.tags='@smoke'",
-    "test:regression": "wdio run ./wdio.conf.js --cucumberOpts.tags='@regression'"
+    "test:regression": "wdio run ./wdio.conf.js --cucumberOpts.tags='@regression'",
+    "test:cart": "wdio run ./wdio.conf.js --cucumberOpts.tags='@cart'",
+    "test:login": "wdio run ./wdio.conf.js --cucumberOpts.tags='@login'"
   },
   "devDependencies": {
     "@wdio/cli": "^10.0.2",

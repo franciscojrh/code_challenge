@@ -1,4 +1,4 @@
-@login
+@smoke @login
 Feature: Log In
   As an existing user
   I want to log in to the DemoBlaze application
@@ -7,7 +7,6 @@ Feature: Log In
   Background:
     Given I am on the DemoBlaze home page
 
-  @smoke
   Scenario: Successful login with valid credentials
     When I click on the "Log in" button in the navigation bar
     And I enter my username and password

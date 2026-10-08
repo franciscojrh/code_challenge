@@ -1,4 +1,4 @@
-@cart
+@smoke @cart
 Feature: Add Product to Cart
   As a user
   I want to add products to my shopping cart
@@ -8,7 +8,6 @@ Feature: Add Product to Cart
     Given I am on the DemoBlaze home page
     And I am logged in with valid credentials
 
-  @regression
   Scenario: Successfully add a product to the cart
     When I click on a product from the home page
     And I click the "Add to cart" button on the product page
