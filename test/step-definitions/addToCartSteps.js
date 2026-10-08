@@ -15,16 +15,31 @@ Given('I am logged in with valid credentials', async () => {
     await HomePage.clickLoginNavLink();
     await LoginPage.login(username, password);
 
-    // Handle a login-failure alert before trying anything else
-    await browser.pause(500);
-    const alertText = await browser.getAlertText().catch(() => null);
-    if (alertText) {
-        await browser.acceptAlert();
-        throw new Error(`Login failed — DemoBlaze alert: "${alertText}". Update credentials in test/data/testData.js.`);
-    }
-
-    // Wait for the modal to fully close so it doesn't block product clicks
-    await $('#logInModal').waitForDisplayed({ timeout: 8000, reverse: true });
+    // Poll until either a login-failure alert appears OR the modal has closed.
+    // DemoBlaze's server response time varies — a fixed pause is not reliable.
+    await browser.waitUntil(
+        async () => {
+            // Check for an error alert (e.g. "Wrong password.")
+            const alertText = await browser.getAlertText().catch(() => null);
+            if (alertText) {
+                await browser.acceptAlert();
+                throw new Error(
+                    `Login failed — DemoBlaze alert: "${alertText}". ` +
+                    `Update credentials in test/data/testData.js.`
+                );
+            }
+            // Success: modal has been removed from the DOM / hidden
+            const modalVisible = await $('#logInModal').isDisplayed().catch(() => false);
+            return !modalVisible;
+        },
+        {
+            timeout: 15000,
+            interval: 500,
+            timeoutMsg:
+                'Login modal did not close after 15s. ' +
+                'Check credentials in test/data/testData.js or DemoBlaze availability.'
+        }
+    );
 });
 
 // ─── When ────────────────────────────────────────────────────────────────────
