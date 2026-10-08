@@ -63,6 +63,12 @@ export const config = {
             showInBrowser: false,
             collapseTests: false,
             useOnAfterCommandForScreenshot: false
+        }],
+        ['allure', {
+            outputDir: './allure-results/',
+            disableWebdriverStepsReporting: false,
+            disableWebdriverScreenshotsReporting: false,
+            useCucumberStepReporter: true
         }]
     ],
 
